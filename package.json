@@ -1,0 +1,25 @@
+{
+  "name": "react-webpack-seed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/AJarombek/react-webpack-seed.git",
+  "keywords": [],
+  "author": "Andrew Jarombek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AJarombek/react-webpack-seed/issues"
+  },
+  "homepage": "https://github.com/AJarombek/react-webpack-seed#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "webpack": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0"
+  }
+}
