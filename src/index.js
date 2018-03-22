@@ -11,6 +11,6 @@ import {render} from 'react-dom';
 window.React = React;
 
 render(
-    <p>Hello World</p>,
+    <p>Hello World!</p>,
     document.getElementById('react-container')
 );

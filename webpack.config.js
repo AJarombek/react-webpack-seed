@@ -6,15 +6,30 @@
 
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+
+// Define paths for the entry point of the app and the output directory
+const PATHS = {
+    app: path.join(__dirname, 'src'),
+    build: path.join(__dirname, 'dist/assets')
+};
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        bundle: PATHS.app
+    },
     output: {
-        path: path.resolve(__dirname, "dist/assets"),
-        filename: "bundle.js",
-        sourceMapFilename: "bundle.map"
+        path: PATHS.build,
+        filename: "[name].js",
+        sourceMapFilename: "[name].map"
     },
     devtool: "#source-map",
+    devServer: {
+        stats: "errors-only", // reduce the logging when running the dev server
+        host: process.env.HOST,
+        port: process.env.PORT,
+        open: true
+    },
     module: {
         rules: [
             {
@@ -36,6 +51,14 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/index.html",
             filename: "./index.html"
-        })
+        }),
+        /*new UglifyJsPlugin({ -- Commented out for removal next commit.  Way too slow for development server.
+            sourceMap: true,
+            parallel: 4,
+            uglifyOptions: {
+                warnings: false,
+                mangle: true
+            }
+        })*/
     ]
 };

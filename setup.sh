@@ -37,3 +37,21 @@ yarn run dev
 
 # Build bundles for production
 yarn run build
+
+# Run webpack dev server so the every time changes are made to code they are pushed to the bundled application
+yarn add webpack-dev-server --dev
+
+# Start the webpack dev server
+yarn run start
+
+# Add the uglify plugin to minimize the JavaScript files
+yarn add uglifyjs-webpack-plugin --dev
+
+# Install the Jest testing framework
+yarn add jest --dev
+
+# Dependencies needed for testing React apps with Jest
+yarn add babel-jest react-test-renderer --dev
+
+# Enzyme allows us to manipulate react components in tests
+yarn add enzyme --dev
