@@ -55,3 +55,13 @@ yarn add babel-jest react-test-renderer --dev
 
 # Enzyme allows us to manipulate react components in tests
 yarn add enzyme --dev
+
+# Enzyme also requires an adapter for react
+yarn add enzyme-adapter-react-16 --dev
+
+# Use Hot Module Replacement with the React app and Webpack
+yarn add react-hot-loader
+
+# Install the nodemon monitoring tool.  We will use this to watch the webpack config file and restart the dev server
+# on any changes
+yarn add nodemon --dev

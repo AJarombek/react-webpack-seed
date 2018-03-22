@@ -3,10 +3,6 @@ node_js:
   - '9.2'
   - '8.0'
 
-before_script:
- - npm install yarn -g
- - yarn --version
-
 script:
   - yarn test
 

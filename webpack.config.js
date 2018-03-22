@@ -6,7 +6,7 @@
 
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const webpack = require("webpack");
 
 // Define paths for the entry point of the app and the output directory
 const PATHS = {
@@ -28,7 +28,9 @@ module.exports = {
         stats: "errors-only", // reduce the logging when running the dev server
         host: process.env.HOST,
         port: process.env.PORT,
-        open: true
+        open: true,
+        overlay: true, // Displays an error overlay in the browser when the code is broken
+        hotOnly: true // Don't perform the refresh in browser if hot loading fails
     },
     module: {
         rules: [
@@ -52,13 +54,6 @@ module.exports = {
             template: "./src/index.html",
             filename: "./index.html"
         }),
-        /*new UglifyJsPlugin({ -- Commented out for removal next commit.  Way too slow for development server.
-            sourceMap: true,
-            parallel: 4,
-            uglifyOptions: {
-                warnings: false,
-                mangle: true
-            }
-        })*/
+        new webpack.HotModuleReplacementPlugin(),
     ]
 };

@@ -1,4 +1,3 @@
-
 /**
  * The Entry point for the React.js application
  * @author Andrew Jarombek
@@ -7,10 +6,11 @@
 
 import React from 'react';
 import {render} from 'react-dom';
+import App from './app';
 
 window.React = React;
 
 render(
-    <p>Hello World!</p>,
+    <App />,
     document.getElementById('react-container')
 );
