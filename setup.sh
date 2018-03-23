@@ -79,3 +79,5 @@ yarn add sass-loader node-sass --dev
 
 # Dependency that helps to separate out webpack configurations into multiple files
 yarn add webpack-merge --dev
+
+yarn add extract-text-webpack-plugin --dev

@@ -41,10 +41,6 @@ const commonConfig = merge([
                     use: {
                         loader: "html-loader"
                     }
-                },
-                {
-                    test: /\.scss$/,
-                    use: ["style-loader", "css-loader", "sass-loader"]
                 }
             ]
         },
@@ -55,11 +51,12 @@ const commonConfig = merge([
             })
         ]
     },
-    parts.lintJavaScript({ options: {emitWarning: true}})
+    parts.lintJavaScript({ options: {emitWarning: true}}),
+    parts.loadSass()
 ]);
 
 const productionConfig = merge([
-    // Nothing Yet!!
+    parts.extractCSS({ use: ["css-loader", "sass-loader"]})
 ]);
 
 const developmentConfig = merge([
