@@ -7,6 +7,8 @@
 import React from 'react';
 import {hot} from 'react-hot-loader';
 
+import './app.scss'
+
 const App = () => <p className="hw">Hello World!!</p>;
 
 // Enable Hot Module Replacement on this component

@@ -72,3 +72,10 @@ yarn add eslint-loader --dev
 
 # Have ESLint work with React style JavaScript
 yarn add babel-eslint eslint-plugin-react --dev
+
+# Add styling sheets (specifically Sass) to Webpack
+yarn add css-loader style-loader --dev
+yarn add sass-loader node-sass --dev
+
+# Dependency that helps to separate out webpack configurations into multiple files
+yarn add webpack-merge --dev

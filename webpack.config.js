@@ -6,7 +6,9 @@
 
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
+const merge = require("webpack-merge");
+
+const parts = require("./webpack.parts");
 
 // Define paths for the entry point of the app and the output directory
 const PATHS = {
@@ -14,55 +16,67 @@ const PATHS = {
     build: path.join(__dirname, 'dist/assets')
 };
 
-module.exports = {
-    entry: {
-        bundle: PATHS.app
-    },
-    output: {
-        path: PATHS.build,
-        filename: "[name].js",
-        sourceMapFilename: "[name].map"
-    },
-    devtool: "#source-map",
-    devServer: {
-        stats: "errors-only", // reduce the logging when running the dev server
-        host: process.env.HOST,
-        port: process.env.PORT,
-        open: true,
-        overlay: true, // Displays an error overlay in the browser when the code is broken
-        hotOnly: true // Don't perform the refresh in browser if hot loading fails
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                enforce: "pre",
-
-                loader: "eslint-loader",
-                options: {
-                    emitWarning: true
+const commonConfig = merge([
+    {
+        entry: {
+            bundle: PATHS.app
+        },
+        output: {
+            path: PATHS.build,
+            filename: "[name].js",
+            sourceMapFilename: "[name].map"
+        },
+        devtool: "#source-map",
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    exclude: /(node_modules)/,
+                    use: {
+                        loader: "babel-loader"
+                    }
+                },
+                {
+                    test: /\.html$/,
+                    use: {
+                        loader: "html-loader"
+                    }
+                },
+                {
+                    test: /\.scss$/,
+                    use: ["style-loader", "css-loader", "sass-loader"]
                 }
-            },
-            {
-                test: /\.js$/,
-                exclude: /(node_modules)/,
-                use: {
-                    loader: "babel-loader"
-                }
-            },
-            {
-                test: /\.html$/,
-                use: {
-                    loader: "html-loader"
-                }
-            }
+            ]
+        },
+        plugins: [
+            new HtmlWebPackPlugin({
+                template: "./src/index.html",
+                filename: "./index.html"
+            })
         ]
     },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            filename: "./index.html"
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-    ]
+    parts.lintJavaScript({ options: {emitWarning: true}})
+]);
+
+const productionConfig = merge([
+    // Nothing Yet!!
+]);
+
+const developmentConfig = merge([
+    {
+        performance: {hints: false}
+    },
+    parts.devServer({
+        host: process.env.HOST,
+        port: process.env.PORT
+    }),
+    parts.hotModuleReplacement()
+]);
+
+module.exports = (env) => {
+    if (env === "production") {
+        return merge(commonConfig, productionConfig);
+    } else {
+        return merge(commonConfig, developmentConfig);
+    }
 };
