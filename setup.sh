@@ -65,3 +65,10 @@ yarn add react-hot-loader
 # Install the nodemon monitoring tool.  We will use this to watch the webpack config file and restart the dev server
 # on any changes
 yarn add nodemon --dev
+
+# Linting our JavaScript files
+yarn add eslint --dev
+yarn add eslint-loader --dev
+
+# Have ESLint work with React style JavaScript
+yarn add babel-eslint eslint-plugin-react --dev
