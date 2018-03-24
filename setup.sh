@@ -80,4 +80,12 @@ yarn add sass-loader node-sass --dev
 # Dependency that helps to separate out webpack configurations into multiple files
 yarn add webpack-merge --dev
 
+# Extract the CSS from JavaScript in production environments
 yarn add extract-text-webpack-plugin --dev
+
+# Use 'yarn upgrade' to update the version of a package
+# https://github.com/webpack/webpack/issues/6568
+yarn upgrade extract-text-webpack-plugin@next
+
+# Inline images in our bundles for development
+yarn add file-loader url-loader --dev

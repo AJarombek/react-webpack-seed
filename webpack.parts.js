@@ -7,6 +7,10 @@
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+exports.generateSourceMaps = ({type}) => ({
+    devtool: type
+});
+
 /**
  * Configure the devServer to be run in the development environment
  * @param host - the hostname to run the dev server on - defaults to localhost
@@ -15,7 +19,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
  */
 exports.devServer = ({ host, port } = {}) => ({
     devServer: {
-        stats: "errors-only", // reduce the logging when running the dev server
+        // stats: "errors-only", // reduce the logging when running the dev server
         host,
         port,
         open: true,
@@ -104,6 +108,53 @@ exports.extractCSS = ({ include, exclude, use }) => {
                 }
             ]
         },
-        plugins: plugin
+        plugins: [plugin]
     }
 };
+
+/**
+ * Load images into the bundle
+ * @param include - files to whitelist for use of URL loader
+ * @param exclude - files to blacklist from URL loader
+ * @param options - additional options to pass to the URL loader
+ * @returns {{module: {rules: *[]}}}
+ */
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|svg)$/,
+                include,
+                exclude,
+                use: {
+                    loader: 'url-loader',
+                    options
+                }
+            }
+
+        ]
+    }
+});
+
+/**
+ * Load fonts into the bundle
+ * @param include - files to whitelist for use of file loader
+ * @param exclude - files to blacklist from file loader
+ * @param options - additional options to pass to the file loader
+ * @returns {{module: {rules: *[]}}}
+ */
+exports.loadFonts = ({ include, exclude, options } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                include,
+                exclude,
+                use: {
+                    loader: 'file-loader',
+                    options
+                }
+            }
+        ]
+    }
+});

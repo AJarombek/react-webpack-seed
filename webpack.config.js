@@ -23,17 +23,16 @@ const commonConfig = merge([
         },
         output: {
             path: PATHS.build,
-            filename: "[name].js",
-            sourceMapFilename: "[name].map"
+            filename: "[name].js"
         },
-        devtool: "#source-map",
         module: {
             rules: [
                 {
                     test: /\.js$/,
                     exclude: /(node_modules)/,
-                    use: {
-                        loader: "babel-loader"
+                    loader: "babel-loader",
+                    options: {
+                        cacheDirectory: true
                     }
                 },
                 {
@@ -52,22 +51,52 @@ const commonConfig = merge([
         ]
     },
     parts.lintJavaScript({ options: {emitWarning: true}}),
-    parts.loadSass()
+    parts.loadFonts({
+        options: {
+            name: '[name].[ext]'
+        }
+    })
 ]);
 
 const productionConfig = merge([
-    parts.extractCSS({ use: ["css-loader", "sass-loader"]})
+    {
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    commons: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendor',
+                        chunks: 'initial'
+                    }
+                }
+            }
+        }
+    },
+    parts.generateSourceMaps({ type: 'source-map' }),
+    parts.extractCSS({ use: ["css-loader", "sass-loader"]}),
+    parts.loadImages({
+        options: {
+            limit: 15000, // Inline an image in the JavaScript bundle if it is sized less than 15kB
+            name: '[name].[ext]'
+        }
+    })
 ]);
 
 const developmentConfig = merge([
     {
-        performance: {hints: false}
+        performance: {hints: false},
+        output: {
+            sourceMapFilename: "[name].map"
+        }
     },
+    parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
     parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT
     }),
-    parts.hotModuleReplacement()
+    parts.hotModuleReplacement(),
+    parts.loadSass(),
+    parts.loadImages()
 ]);
 
 module.exports = (env) => {
