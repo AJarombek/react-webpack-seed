@@ -89,3 +89,5 @@ yarn upgrade extract-text-webpack-plugin@next
 
 # Inline images in our bundles for development
 yarn add file-loader url-loader --dev
+
+yarn add prop-types
