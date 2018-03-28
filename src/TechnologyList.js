@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import Technology from './technology';
+import Technology from './Technology';
 import PropTypes from 'prop-types';
 
 const TechnologyList = ({ techList=[] }) =>

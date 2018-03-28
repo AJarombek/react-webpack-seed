@@ -90,4 +90,9 @@ yarn upgrade extract-text-webpack-plugin@next
 # Inline images in our bundles for development
 yarn add file-loader url-loader --dev
 
+# Property validation was moved into its own module in React 16.
 yarn add prop-types
+
+# In order for Jest tests to work, we need to remove the CSS imports from JavaScript
+# Learning React: Pg. 246
+yarn add jest-css-modules --dev

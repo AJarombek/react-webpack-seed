@@ -6,7 +6,7 @@
 
 import React from 'react';
 import {hot} from 'react-hot-loader';
-import TechnologyList from './technologyList';
+import TechnologyList from './TechnologyList';
 
 import './app.scss'
 

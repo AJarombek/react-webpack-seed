@@ -6,11 +6,11 @@
 
 import React from 'react';
 import {shallow} from 'enzyme';
-import App from '../src/app';
+import App from '../src/App';
 
 test('App has Hello World <div>', () => {
 
    const app = shallow(<App />);
 
-   expect(app.find('.hw')).toHaveLength(1);
+   expect(app.find('.title')).toHaveLength(1);
 });
