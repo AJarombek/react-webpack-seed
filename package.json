@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack --env production",
     "dev": "webpack --env development",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development --open\""
@@ -20,6 +20,15 @@
     "setupTestFrameworkScriptFile": "./test/setupTests.js",
     "moduleNameMapper": {
       "\\.(scss)$": "jest-css-modules"
+    },
+    "collectCoverageFrom": ["src/**"],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
     }
   },
   "homepage": "https://github.com/AJarombek/react-webpack-seed#readme",

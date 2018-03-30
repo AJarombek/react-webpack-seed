@@ -6,15 +6,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Technology = ({ name, release_date }) =>
+const Technology = ({ name, release_date, picture }) =>
     <div>
+        <figure>
+            <img src={ require(`${picture}`) } />
+        </figure>
         <p className="tech-name">{name}</p>
         <p className="tech-release-date">{release_date.toString()}</p>
     </div>;
 
 Technology.propTypes = {
     name: PropTypes.string.isRequired,
-    release_date: PropTypes.instanceOf(Date).isRequired
+    release_date: PropTypes.instanceOf(Date).isRequired,
+    picture: PropTypes.string.isRequired
 };
 
 export default Technology;

@@ -4,7 +4,43 @@
  * @since 3/22/2018
  */
 
+@font-face {
+  font-family: Sylexiad;
+  font-weight: normal;
+  src: url("./assets/SylexiadSansThin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Sylexiad-Bold;
+  font-weight: bold;
+  src: url("./assets/SylexiadSansThin-Bold.ttf") format("truetype");
+}
+
+/**
+ * A mixin that sets the font to sylexiad
+ */
+@mixin sylexiad {
+  font: {
+    family: 'Sylexiad', Helvetica, sans-serif !important;
+    weight: normal;
+    style: normal;
+  }
+  letter-spacing: 0.4px;
+}
+
+/**
+ * A mixin that sets the font to sylexiad bold
+ */
+@mixin sylexiad-bold {
+  font: {
+    family: 'Sylexiad-Bold', Helvetica, sans-serif !important;
+    weight: bold;
+    style: normal;
+  }
+}
+
 p {
   font-weight: bold;
   color: gray;
+  @include sylexiad-bold;
 }
