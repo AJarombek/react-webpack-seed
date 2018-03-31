@@ -7,6 +7,8 @@ import React from 'react';
 import Technology from './Technology';
 import PropTypes from 'prop-types';
 
+import './TechnologyList.scss';
+
 const TechnologyList = ({ techList=[] }) =>
     <div className="technology-list">
         { (techList.length === 0) ?

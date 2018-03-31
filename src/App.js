@@ -8,7 +8,7 @@ import React from 'react';
 import {hot} from 'react-hot-loader';
 import TechnologyList from './TechnologyList';
 
-import './app.scss';
+import './App.scss';
 
 class App extends React.Component {
 
@@ -48,7 +48,9 @@ class App extends React.Component {
         const {technologies} = this.state;
         return (
             <div>
-                <p className="title">React Webpack Seed</p>
+                <div className="title-container">
+                    <p className="title">React Webpack Seed</p>
+                </div>
                 <p className="sub-title">Technologies used</p>
                 <TechnologyList techList={technologies} />
             </div>

@@ -6,8 +6,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Technology.scss';
+
 const Technology = ({ name, release_date, picture }) =>
-    <div>
+    <div className="technology">
         <figure>
             <img src={ require(`${picture}`) } />
         </figure>
