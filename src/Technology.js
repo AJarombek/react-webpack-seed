@@ -5,6 +5,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import dateFormat from 'dateformat';
 
 import './Technology.scss';
 
@@ -14,7 +15,7 @@ const Technology = ({ name, release_date, picture }) =>
             <img src={ require(`${picture}`) } />
         </figure>
         <p className="tech-name">{name}</p>
-        <p className="tech-release-date">{release_date.toString()}</p>
+        <p className="tech-release-date">{dateFormat(release_date, "mmmm dS, yyyy")}</p>
     </div>;
 
 Technology.propTypes = {

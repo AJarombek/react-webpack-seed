@@ -96,3 +96,9 @@ yarn add prop-types
 # In order for Jest tests to work, we need to remove the CSS imports from JavaScript
 # Learning React: Pg. 246
 yarn add jest-css-modules --dev
+
+# Simplifies formatting JavaScript date objects
+yarn add dateformat
+
+# Save the output of Snapshot tests as JSX
+yarn add enzyme-to-json --dev

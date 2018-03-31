@@ -20,7 +20,7 @@ const TechnologyList = ({ techList=[] }) =>
     </div>;
 
 TechnologyList.propTypes = {
-    techList: PropTypes.array.isRequired
+    techList: PropTypes.array
 };
 
 export default TechnologyList;
