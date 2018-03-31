@@ -1,4 +1,5 @@
 /**
+ * A component that holds a list of technologies
  * @author Andrew Jarombek
  * @since 3/24/2018
  */

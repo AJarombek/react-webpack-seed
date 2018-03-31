@@ -1,11 +1,12 @@
 /**
+ * A component that displays certain attributes of a technology
  * @author Andrew Jarombek
  * @since 3/22/2018
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import dateFormat from 'dateformat';
+import moment from 'moment';
 
 import './Technology.scss';
 
@@ -15,7 +16,9 @@ const Technology = ({ name, release_date, picture }) =>
             <img src={ require(`${picture}`) } />
         </figure>
         <p className="tech-name">{name}</p>
-        <p className="tech-release-date">{dateFormat(release_date, "mmmm dS, yyyy")}</p>
+        <p className="tech-release-date">
+            {moment(release_date).format('MMMM Do, YYYY')}
+        </p>
     </div>;
 
 Technology.propTypes = {

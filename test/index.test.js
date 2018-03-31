@@ -34,6 +34,10 @@ const technology = shallow(<Technology name={techList[0].name}
                                        picture={techList[0].picture}
                                        release_date={techList[0].release_date} />);
 
+// We must mock the format() function for the moment() call
+// The jest.mock() function expects one argument - a function that returns the mock
+jest.mock('moment', () => () => ({format: () => 'March 1st, 2013'}));
+
 test('App has Title', () => {
     expect(app.find('.title')).toHaveLength(1);
 });
@@ -56,5 +60,5 @@ test('Technology name is React', () => {
 });
 
 test('Technology release date is march 2013', () => {
-    expect(technology.find('.tech-release-date').text()).toEqual('February 28th, 2013');
+    expect(technology.find('.tech-release-date').text()).toEqual('March 1st, 2013');
 });

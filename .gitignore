@@ -6,4 +6,3 @@ node_modules/*
 dist/*
 coverage/*
 src/assets/*
-test/__snapshots__/*

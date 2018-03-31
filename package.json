@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage --updateSnapshot",
     "build": "webpack --env production",
     "dev": "webpack --env development",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env development --open\""
@@ -25,7 +25,9 @@
     "collectCoverageFrom": [
       "src/**"
     ],
-    "coveragePathIgnorePatterns": ["./src/index.js"],
+    "coveragePathIgnorePatterns": [
+      "./src/index.js"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 90,
@@ -37,7 +39,7 @@
   },
   "homepage": "https://github.com/AJarombek/react-webpack-seed#readme",
   "dependencies": {
-    "dateformat": "^3.0.3",
+    "moment": "^2.22.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

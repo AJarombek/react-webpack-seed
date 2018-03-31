@@ -98,7 +98,10 @@ yarn add prop-types
 yarn add jest-css-modules --dev
 
 # Simplifies formatting JavaScript date objects
-yarn add dateformat
+yarn add moment
 
 # Save the output of Snapshot tests as JSX
 yarn add enzyme-to-json --dev
+
+# Update the installed packages based on package.json.  Shorthand for 'yarn install'
+yarn
