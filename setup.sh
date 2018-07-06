@@ -105,3 +105,6 @@ yarn add enzyme-to-json --dev
 
 # Update the installed packages based on package.json.  Shorthand for 'yarn install'
 yarn
+
+# Install nodemon globally so you can use it in the command line
+npm install nodemon -g
