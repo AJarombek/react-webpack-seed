@@ -7,22 +7,42 @@
  */
 
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'node:8-alpine'
+            args '-p 3000:3000'
+        }
+    }
     stages {
         stage('Build') {
             steps {
                 sh "echo In Build Stage for build ${env.BUILD_ID}"
+                sh '''
+                    set -x
+                    npm install yarn -g
+                    yarn
+                    set +x
+                '''
             }
         }
         stage('Test') {
             steps {
-                sh 'echo In Test Stage'
+                sh '''
+                    echo In Test Stage
+                    set -x
+                    yarn run test
+                    set +x
+                '''
             }
         }
         stage('Deploy') {
             steps {
-                sh 'echo In Deploy Stage'
+                sh '''
+                    echo In Deploy Stage
+                    set -x
+                    yarn run start
+                    set +x
+                '''
             }
         }
     }
