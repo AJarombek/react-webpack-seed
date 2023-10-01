@@ -1,0 +1,29 @@
+name: Test React Code
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  
+  schedule:
+    - cron: "0 5 * * 5"
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: node:11-alpine
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Initialize Yarn
+        run: yarn
+
+      - name: Test React Code
+        run: yarn test
