@@ -16,7 +16,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: node:11-alpine
+    container: node:9-alpine
 
     steps:
       - name: Checkout Repository
