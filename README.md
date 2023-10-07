@@ -42,6 +42,16 @@ yarn start
 
 ### Version History
 
+**[V.1.1.0](https://github.com/AJarombek/react-webpack-seed/tree/v1.1.0) - Modernization Update**
+
+> Release Date: October 7th, 2023
+
+* Upgrade to React 18
+* Upgrade to Webpack 5
+* Add GitHub Actions for Testing, Linting, and Formatting
+* Upgrade Babel
+* Add Prettier
+
 **[V.1.0.0](https://github.com/AJarombek/react-webpack-seed/tree/v1.0.0) - Initial Release**
 
 > Release Date: March 17th, 2019
