@@ -20,7 +20,9 @@
     "url": "https://github.com/AJarombek/react-webpack-seed/issues"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./test/setupTests.js",
+    "setupFilesAfterEnv": [
+      "./test/setupTests.js"
+    ],
     "moduleNameMapper": {
       "\\.(scss)$": "jest-css-modules",
       "\\.(png|ttf)$": "../mocks/fileMock.js"
