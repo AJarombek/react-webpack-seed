@@ -8,10 +8,10 @@ LABEL maintainer="andrew@jarombek.com" \
       version="1.1.0" \
       description="Dockerfile for a React and Webpack Seed Application"
 
-RUN mkdir /usr/src/app
-COPY . /usr/src/app
+RUN mkdir /src
+COPY . /src
 
-WORKDIR /usr/src/app
+WORKDIR /src
 
 RUN npm install yarn -g
 RUN yarn

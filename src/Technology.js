@@ -10,21 +10,20 @@ import moment from 'moment';
 
 import './Technology.scss';
 
-const Technology = ({ name, release_date, picture }) =>
-    <div className="technology">
-        <figure>
-            <img src={ require(`${picture}`) } />
-        </figure>
-        <p className="tech-name">{name}</p>
-        <p className="tech-release-date">
-            {moment(release_date).format('MMMM Do, YYYY')}
-        </p>
-    </div>;
+const Technology = ({ name, release_date, picture }) => (
+  <div className="technology">
+    <figure>
+      <img src={require(`${picture}`)} />
+    </figure>
+    <p className="tech-name">{name}</p>
+    <p className="tech-release-date">{moment(release_date).format('MMMM Do, YYYY')}</p>
+  </div>
+);
 
 Technology.propTypes = {
-    name: PropTypes.string.isRequired,
-    release_date: PropTypes.instanceOf(Date).isRequired,
-    picture: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  release_date: PropTypes.instanceOf(Date).isRequired,
+  picture: PropTypes.string.isRequired,
 };
 
 export default Technology;
