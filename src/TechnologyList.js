@@ -10,18 +10,18 @@ import PropTypes from 'prop-types';
 
 import './TechnologyList.scss';
 
-const TechnologyList = ({ techList=[] }) =>
-    <div className="technology-list">
-        { (techList.length === 0) ?
-            <p>No Data</p> :
-            techList.map(technology =>
-                <Technology key={technology.id} {...technology} />
-            )
-        }
-    </div>;
+const TechnologyList = ({ techList = [] }) => (
+  <div className="technology-list">
+    {techList.length === 0 ? (
+      <p>No Data</p>
+    ) : (
+      techList.map((technology) => <Technology key={technology.id} {...technology} />)
+    )}
+  </div>
+);
 
 TechnologyList.propTypes = {
-    techList: PropTypes.array
+  techList: PropTypes.array,
 };
 
 export default TechnologyList;

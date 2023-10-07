@@ -6,7 +6,8 @@
 
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const merge = require("webpack-merge");
+const ESLintPlugin = require("eslint-webpack-plugin");
+const { merge } = require("webpack-merge");
 
 const parts = require("./webpack.parts");
 
@@ -47,19 +48,19 @@ const commonConfig = merge([
             new HtmlWebPackPlugin({
                 template: "./src/index.html",
                 filename: "./index.html"
-            })
+            }),
+            new ESLintPlugin({
+                failOnError: false
+            }),
         ]
     },
-    parts.lintJavaScript({ options: {emitWarning: true}}),
-    parts.loadFonts({
-        options: {
-            name: '[name].[ext]'
-        }
-    })
+    parts.generateSourceMaps({ type: 'source-map' }),
+    parts.loadFonts()
 ]);
 
 const productionConfig = merge([
     {
+        mode: "production",
         optimization: {
             splitChunks: {
                 cacheGroups: {
@@ -72,24 +73,18 @@ const productionConfig = merge([
             }
         }
     },
-    parts.generateSourceMaps({ type: 'source-map' }),
     parts.extractCSS({ use: ["css-loader", "sass-loader"]}),
-    parts.loadImages({
-        options: {
-            limit: 15000, // Inline an image in the JavaScript bundle if it is sized less than 15kB
-            name: '[name].[ext]'
-        }
-    })
+    parts.loadImages()
 ]);
 
 const developmentConfig = merge([
     {
+        mode: "development",
         performance: {hints: false},
         output: {
             sourceMapFilename: "[name].map"
         }
     },
-    parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),
     parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT

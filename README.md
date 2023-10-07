@@ -6,6 +6,24 @@
 
 Seed application for React and Webpack, usable as a starting point for a full application.
 
+### Commands
+
+**Configure Locally**
+
+```bash
+yarn
+
+yarn lint
+yarn prettier:check
+yarn prettier:write
+```
+
+**Run Locally**
+
+```bash
+yarn start
+```
+
 ### Files
 
 | Filename             | Description                                                                                                 |

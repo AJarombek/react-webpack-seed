@@ -5,12 +5,10 @@
  */
 
 import React from 'react';
-import {render} from 'react-dom';
+import { createRoot } from 'react-dom';
 import App from './App';
 
 window.React = React;
 
-render(
-    <App />,
-    document.getElementById('react-container')
-);
+const root = createRoot(document.getElementById('react-container'));
+root.render(<App />);

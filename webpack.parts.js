@@ -23,8 +23,7 @@ exports.devServer = ({ host, port } = {}) => ({
         host,
         port,
         open: true,
-        overlay: true, // Displays an error overlay in the browser when the code is broken
-        hotOnly: true // Don't perform the refresh in browser if hot loading fails
+        hot: true
     }
 });
 
@@ -36,29 +35,6 @@ exports.hotModuleReplacement = () => ({
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
     ]
-});
-
-/**
- * Lint JavaScript files with ESLint
- * @param include - files to whitelist for use of these loaders
- * @param exclude - files to blacklist from these loaders
- * @param options - additional options to pass to the ESLint loader
- * @returns {{module: {rules: *[]}}}
- */
-exports.lintJavaScript = ({ include, exclude, options }) => ({
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                include,
-                exclude,
-                enforce: "pre",
-
-                loader: "eslint-loader",
-                options
-            }
-        ]
-    }
 });
 
 /**
@@ -114,46 +90,29 @@ exports.extractCSS = ({ include, exclude, use }) => {
 
 /**
  * Load images into the bundle
- * @param include - files to whitelist for use of URL loader
- * @param exclude - files to blacklist from URL loader
- * @param options - additional options to pass to the URL loader
  * @returns {{module: {rules: *[]}}}
  */
-exports.loadImages = ({ include, exclude, options } = {}) => ({
+exports.loadImages = () => ({
     module: {
         rules: [
             {
-                test: /\.(png|jpg|svg)$/,
-                include,
-                exclude,
-                use: {
-                    loader: 'url-loader',
-                    options
-                }
+                test: /\.(png|jpg|svg|gif)$/,
+                type: 'asset/inline'
             }
-
         ]
     }
 });
 
 /**
  * Load fonts into the bundle
- * @param include - files to whitelist for use of file loader
- * @param exclude - files to blacklist from file loader
- * @param options - additional options to pass to the file loader
  * @returns {{module: {rules: *[]}}}
  */
-exports.loadFonts = ({ include, exclude, options } = {}) => ({
+exports.loadFonts = () => ({
     module: {
         rules: [
             {
-                test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-                include,
-                exclude,
-                use: {
-                    loader: 'file-loader',
-                    options
-                }
+                test: /\.(eot|ttf|woff|woff2|otf|ico)(\?v=\d+\.\d+\.\d+)?$/,
+                type: 'asset/resource'
             }
         ]
     }
